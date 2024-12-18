@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { RiHome2Line } from "react-icons/ri";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdArrowDropUp } from "react-icons/md";
@@ -12,10 +12,13 @@ const SideBar = () => {
   const [purchases, setPurchases] = useState(false);
   const [sideBar, setSideBar] = useState(false);
   const [time, setTime] = useState(false);
+  const [doc, setDoc] = useState(false);
   const handlesSideBars = () => {
     setSideBar(!sideBar);
     setSales(false);
     setPurchases(false);
+    setTime(false);
+    setDoc(false);
   };
   const handlesSalesDropDown = () => {
     setSales(!sales);
@@ -27,18 +30,23 @@ const SideBar = () => {
   const handlesTimeDropDown = () => {
     setTime(!time);
   };
+  const handlesDocDropDown = () => {
+    setDoc(!doc);
+  };
 
   return (
-    <div className="w-[70%] fixed p-4 leading-8 font-semibold">
+    <div
+      className={`w-[70%] fixed p-4 h-[100vh] shadow-2xl leading-10 font-semibold `}
+    >
       <div>
         <button onClick={handlesSideBars}>
-          <RxHamburgerMenu />
+          <GiHamburgerMenu className="font-extrabold text-2xl" />
         </button>
       </div>
       {sideBar && (
-        <div>
+        <div className=" p-2 ">
           <div>
-            <div className="flex items-center justify-center text-xl bg-gray-700 text-white w-5 text-center rounded-3xl h-10 p-4">
+            <div className="flex items-center  justify-center text-xl bg-gray-700 text-white w-5 text-center rounded-3xl h-10 p-4">
               <span>D</span>
             </div>
             <div>
@@ -126,6 +134,31 @@ const SideBar = () => {
                   <li>Projects</li>
                   <li>Time Enteries</li>
                   <li>Timer</li>
+                </ul>
+              </div>
+            )}
+          </div>
+          <div>
+            <div>
+              <button
+                className="flex w-full items-center justify-between items-center "
+                onClick={handlesDocDropDown}
+              >
+                <div className="flex items-center justify-start">
+                  <LuAlarmClock /> &nbsp; Documents{" "}
+                </div>
+                <div className="flex item-center">
+                  <MdArrowDropDown className={`${doc ? "hidden" : "block"}`} />
+                  <MdArrowDropUp className={`${!doc ? "hidden" : "block"}`} />
+                </div>
+              </button>
+            </div>
+            {doc && (
+              <div className="mx-10 leading-9">
+                <ul>
+                  <li>Inbox</li>
+                  <li>All Files</li>
+                  <li>Folders</li>
                 </ul>
               </div>
             )}
