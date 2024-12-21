@@ -6,6 +6,7 @@ import { MdArrowDropUp } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { LuAlarmClock } from "react-icons/lu";
+import { FaTimes } from "react-icons/fa";
 
 const SideBar = () => {
   const [sales, setSales] = useState(false);
@@ -36,13 +37,30 @@ const SideBar = () => {
 
   return (
     <div
-      className={`w-[70%] fixed p-4 h-[100vh] shadow-2xl leading-10 font-semibold `}
+      className={`w-[70%] fixed p-4 h-[100vh] overflow-y-auto scrollbar-y-hidden ${
+        sideBar ? "shadow-2xl" : ""
+      } leading-10 font-semibold `}
     >
-      <div>
-        <button onClick={handlesSideBars}>
-          <GiHamburgerMenu className="font-extrabold text-2xl" />
-        </button>
+      <div className="flex items-center justify-between">
+        <div>
+          <button
+            onClick={handlesSideBars}
+            className={`${!sideBar ? "block" : "hidden"}`}
+          >
+            <GiHamburgerMenu className="font-extrabold text-2xl" />
+          </button>
+          <button
+            onClick={handlesSideBars}
+            className={`${sideBar ? "block" : "hidden"}`}
+          >
+            <FaTimes className="font-extrabold text-2xl" />
+          </button>
+        </div>
+        <div>
+          <h2>USER-6723</h2>
+        </div>
       </div>
+
       {sideBar && (
         <div className=" p-2 ">
           <div>
@@ -54,7 +72,7 @@ const SideBar = () => {
             </div>
           </div>
           <hr />
-          <div className="flex items-center justify-start">
+          <div className="flex items-center justify-start bg-blue-50 ">
             <RiHome2Line /> &nbsp; Home
           </div>
           <div>
